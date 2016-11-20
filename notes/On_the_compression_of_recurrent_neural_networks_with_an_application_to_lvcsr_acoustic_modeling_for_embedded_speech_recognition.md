@@ -23,3 +23,4 @@
 
 ## Methods
 - 
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/rnn_lowrank.JPG)

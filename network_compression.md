@@ -5,7 +5,7 @@
 
 
 
-Table
+
 | Paper         | Year          | Compression | Pruning | S/W | H/W | DNN type |
 | ------------- |:-------------:| -----------:| -------:| ---:| ---:| --------:|
 | col 3 is      | right-aligned |             |         |     |     |          | 

@@ -2,9 +2,9 @@
 
 * Motivation: Trying to apply Context-Dependent Deep-Neural-Network HMM (CD-DNN-HMM) directly to speech-to-text transcription
 * Contribution: 
-1. CD-DNN-HMM can be used in large-scale tasks 
-2. We can reduce error and model size by applying weight sparseness
-3. Look at MLP and DBN (deep belief network) to see what affects the accuracy of CD-DNN-HMMs 
+  CD-DNN-HMM can be used in large-scale tasks 
+  We can reduce error and model size by applying weight sparseness
+  Look at MLP and DBN (deep belief network) to see what affects the accuracy of CD-DNN-HMMs 
 
 * Method: 
 * Results: 

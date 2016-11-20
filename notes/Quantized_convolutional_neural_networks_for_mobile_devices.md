@@ -20,7 +20,8 @@
 - this method deals not only with hidden state computations but also **backward weight updates**
 
 ## Methods
-- Quantizing the fully-connected layer
+
+Quantizing the fully-connected layer
 : Raaaa
 - Quantizing the convolutional layer
 - Quantizing with error correction

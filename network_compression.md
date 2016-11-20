@@ -9,7 +9,7 @@
 | Paper         | Year  | Compression | Pruning | S/W | H/W | DNN type |
 | :-----------: |:-----:|:-----------:|:-------:|:---:|:---:|:--------:|
 | Predicting parameters in deep learning | 2013 |             |         |     |     | **CNN** | 
-| On the compression of recurrent neural networks with an application to LVSCR acoustic modeling for embedded speech recognition | centered      | 2016 |         |     |     | **RNN** |
+| On the compression of recurrent neural networks with an application to LVSCR acoustic modeling for embedded speech recognition | 2016 |  |         |     |     | **RNN** |
 | zebra stripes | are neat      |             |         |     |     |          |
 
 

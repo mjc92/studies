@@ -24,6 +24,6 @@
 1. Quantizing the fully-connected layer
 2. Quantizing the convolutional layer
 3. Quantizing with error correction
-> Error correction for the fully-connected layer
->> Error correction for the convolutional layer
-> Error correction for multiple layers
+ 1. Error correction for the fully-connected layer
+ 2. Error correction for the convolutional layer
+ 3. Error correction for multiple layers

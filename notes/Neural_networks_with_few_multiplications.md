@@ -20,4 +20,4 @@
 ## Methods
 - BinaryConnect: reduces multiplications by stochastically sampling weights to be -1 or 1.
 - TernaryConnect: reduces multiplications by stochastically sampling weights to be -1, 0 or 1.
-- 
+- Quantized backpropagation: quantize x(hidden vector) when calculating backprop 

@@ -6,7 +6,7 @@
 * Results: Reduce size of LSTM acoustic model to 1/3 of original size while negligible loss in accuracy
 * Future work: Compression techniques can be applied to RNNs in other domains such as machine translation
 
-## Prerequisites
+## Related work
 - Denil et al. Predicting parameters in deep learning [[paper]](https://arxiv.org/pdf/1306.0543v2.pdf) [[notes]]() : Neural network can be reconstructed only using a small number of parameters
 - Bucila et al. Model compression [[paper]](https://www.cs.cornell.edu/~caruana/compression.kdd06.pdf) [[notes]]() : A small network with few parameters can be trained to predict the output distribution of a larger network
 - Hinton et al. Distilling the Knowledge in a Neural Network [[paper]](https://www.cs.toronto.edu/~hinton/absps/distillation.pdf) [[notes]]() : Introduced "distillation", a concept similar to model compression
@@ -15,3 +15,4 @@
 - Grezl et al. Optimizing bottle-neck features for LVCSR [[paper]](http://noel.feld.cvut.cz/speechlab/publications/068_icassp08.pdf) [[notes]]() : Change network architecture by introducing bottleneck layers
 - Sainath et al. Low-rank matrix factorization for deep neural network training with high-dimensional output targets [[paper]](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6638949) [[notes]]() : Change network architecture through a low-rank matrix factorization layer
 - Wang et al. Small-footprint high-performance deep neural network-based speech recognition using Split-VQ [[paper]](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7178919) [[notes]]() : Combinde SVD and vector quantization to compress acoustic models
+

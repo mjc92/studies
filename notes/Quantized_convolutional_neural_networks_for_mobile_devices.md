@@ -1,11 +1,13 @@
 # Quantized convolutional neural networks for mobile devices
 * [[paper]](https://arxiv.org/pdf/1512.06473v3.pdf)
+* [[github]](https://github.com/jiaxiang-wu/quantized-cnn)
 
-* Motivation: Too much computation time spent on floating points
-* Contribution: Reduce computation time in floating points
-* Method: Binarize weights in hidden states, quantize representations at each layer to change multiplications to binary shifts
-* Results: Faster results and even better performance compared to standard stochastic gradient descent
-* Future work: Compression techniques can be applied to RNNs in other domains such as machine translation
+* Motivation: Limited computation ability and memory space make it difficult to run DNN on mobile devices
+* Contribution: Q-CNN model that enables fast test-phase computation while reducing storage and memory consumption
+, effective training scheme to suppress the accumulative error while quantizing the whole CNN
+* Method: 
+* Results: 4~6x speedup and 15~20x compression with less thant 1% accuracy loss, classify an image on mobile device within 1 second
+* Future work: 
 
 ## Related work
 - Kim et al. Bitwise neural networks [[paper]](https://arxiv.org/pdf/1601.06071v1.pdf) [[notes]]() : totally boolean network, but only applies on pre-trained set
@@ -18,6 +20,7 @@
 - this method deals not only with hidden state computations but also **backward weight updates**
 
 ## Methods
-- BinaryConnect: reduces multiplications by stochastically sampling weights to be -1 or 1.
-- TernaryConnect: reduces multiplications by stochastically sampling weights to be -1, 0 or 1.
-- Quantized backpropagation: quantize x(hidden vector) when calculating backprop 
+- Quantizing the fully-connected layer
+: Raaaa
+- Quantizing the convolutional layer
+- Quantizing with error correction

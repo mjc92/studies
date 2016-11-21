@@ -30,5 +30,10 @@ low-precision RNNs and produce even higher accuracy
 - plus their own weight quantization method called **Exponential Quantization**
 
 ## Methods
+- Basic representations of a convolutional layer, a fully-connected layer, and vector quantization
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)
+
+### Quantizing the Fully-connected Layer
 - 
 ![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)
+

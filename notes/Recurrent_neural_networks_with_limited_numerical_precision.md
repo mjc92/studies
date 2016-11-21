@@ -34,6 +34,7 @@ low-precision RNNs and produce even higher accuracy
 ![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)
 
 ### Quantizing the Fully-connected Layer
-- 
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn_fc.JPG)
 
+### Quantizing the convolution Layer
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn_conv.JPG)

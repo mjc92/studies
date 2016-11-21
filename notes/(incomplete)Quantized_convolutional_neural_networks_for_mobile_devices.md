@@ -15,9 +15,11 @@
 - Cheng et al. Training binary multilayer neural networks for image classification using expectation backpropagation [[paper]](https://arxiv.org/pdf/1503.03562v3.pdf) [[notes]]() : DNNs with binary weights can be trained for multi-classification with **expectation backpropagation**
 
 ## Prerequisites
-- Courbariaux et al. BinaryConnect: Training Deep Neural Networks with binary weights during propagations [[paper]](https://arxiv.org/pdf/1511.00363v3.pdf) [[notes]]()
-: eliminates multiplications in computing hidden representations by binarizing weights
-- this method deals not only with hidden state computations but also **backward weight updates**
+- Product quantization works better in approximate nearest neighbor search than hashing-based methods
+- Jegou et al. Product quantization for nearest neighbor search [[paper]](https://arxiv.org/pdf/1511.00363v3.pdf) [[notes]]()
+: use of product quantization in nearest neighbor search
+- Most quantization-based methods focues on fullly-connected layers, and do not improve test-phase computation
+- **Our work accelerates and compresses both convolutional and fully-connected layers, and dramatically reduces run-time memory consumption**
 
 ## Methods
 

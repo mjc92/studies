@@ -38,3 +38,12 @@ low-precision RNNs and produce even higher accuracy
 
 ### Quantizing the convolution Layer
 ![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn_conv.JPG)
+
+### Quantization with Error Correction
+- Drawbacks
+  1. Minimizing quantization error of model parameters does not necessarily lead to optimal classification accuracy
+  (better to minimize estimation error of each layer's output)
+  2. Quantization of one error is independent of others and may lead to large error when quantizing multiple layers
+- So, we use error correction into quantization of network parameters 
+  1. to minimize estimation error of the response at each layer
+  2. to compensate the error introduced by previous layers

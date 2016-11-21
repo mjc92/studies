@@ -31,4 +31,4 @@ low-precision RNNs and produce even higher accuracy
 
 ## Methods
 - 
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/rnn_lowrank.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)

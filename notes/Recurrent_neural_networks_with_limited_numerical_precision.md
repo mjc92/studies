@@ -47,3 +47,7 @@ low-precision RNNs and produce even higher accuracy
 - So, we use error correction into quantization of network parameters 
   1. to minimize estimation error of the response at each layer
   2. to compensate the error introduced by previous layers
+
+### Error Correction for the Fully-connected Layer
+- use block coordinate descent approach
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/error_correction.JPG)

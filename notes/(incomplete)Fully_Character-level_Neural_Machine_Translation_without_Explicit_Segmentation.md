@@ -20,20 +20,10 @@
   and how a sequence of symbols can be mapped to a continuous meaning representation
 
 ## Related work
-- Denil et al. Predicting parameters in deep learning 
-[[paper]](https://arxiv.org/pdf/1603.06147v4.pdf) 
+- Zhang et al. Character-level Convolutional Networks for Text Classification 
+[[paper]](https://arxiv.org/pdf/1509.01626v3.pdf) 
 [[notes]]() 
-: Neural network can be reconstructed only using a small number of parameters
-
-## Prerequisites
-- Chung et al. A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation
-[[paper]](https://arxiv.org/pdf/1603.06147v4.pdf) 
-[[notes]]() 
-: benefits of char-level translation over word-level translation
-  1. do not suffer from OOV issues
-  2. able to model different, rare morphological variants of a word
-  3. do not require segmentation
-  - use subword-level encoder and fully character-level decoder (bpe2char)
+: Applies CNN in text classification
 - Costa-Jussa and Fonollosa. Character-based neural machine translation
 [[paper]](https://arxiv.org/pdf/1603.00810v3.pdf) 
 [[notes]]() 
@@ -49,6 +39,16 @@ and generates target word **character by character**
 [[notes]]() 
 : hybrid scheme that consults char-level information whenever model encounters an OOV word, also implementing char-level NMT model
 with 4 layers of unidirectional LSTMs with 512 cells and attention over each character
+
+## Prerequisites
+- Chung et al. A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation
+[[paper]](https://arxiv.org/pdf/1603.06147v4.pdf) 
+[[notes]]() 
+: benefits of char-level translation over word-level translation
+  1. do not suffer from OOV issues
+  2. able to model different, rare morphological variants of a word
+  3. do not require segmentation
+  - use subword-level encoder and fully character-level decoder (bpe2char)
 - Sennrich et al. Neural machine translation of rare words with subword units
 [[paper]](https://arxiv.org/pdf/1508.07909v5.pdf) 
 [[notes]]() 

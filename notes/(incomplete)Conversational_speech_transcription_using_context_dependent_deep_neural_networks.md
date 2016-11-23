@@ -19,4 +19,4 @@
 
 ## Methods
 - 
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/rnn_lowrank.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/rnn_lowrank.JPG)

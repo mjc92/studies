@@ -65,24 +65,38 @@ of the proposed system
 ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/encoder_attention_rnn.JPG)
 
 
-## Experiments
-- Dataset
-- Reversing the Source Sentences
-  - No complete explanation, but assuming the introduction of many short term dependencies to the dataset
-  - Reduce "minimal time lag" as first few words in source language are now close to the first few words in target language
+## Experiment Setting
+
+### Models
+1. RNN Encoder-Decoder (Cho et al)
+2. Our model (RNNsearch)
+- beam search applied
 
 ## Results
+
+### Quantitative Results
 - BLEU
-  - Rescoring baseline 100-best with an ensemble of 5 reversed LSTMS(best score): 36.5
-  - state of the art (phrase based): 37.0
-- Does well on long sentences
+  - RNNsearch outperforms conventional RNN Encoder-Decoder
+    - because we don't use fixed-length context vector
+    - doesn't drop as the length of sentence increases
+  - As high as conventional phrase-based translation system
+
+### Qualitative Analysis
+- attention focus
+  - correctly attends from source sentence
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/NMT_alignment.JPG)
+
+- With soft-alignment it is possible to look at source and target phrases of different lengths
 
 ## Conclusion
 - Contributions:
-  1. New model: 2 deep LSTMs for encoding and decoding sequences with limited vocabulary and less optimization
-  2. Tackling problem: it works
-  3. Performance: better compared to SMT-based systems
-    1. reversing greatly improves performance
-    2. can translate very long sentences
+  1. New model: Introduction to soft attention
+    - No need to encode a whole source sentence into a fixed-length vector
+    - Model can focus only on information relevant to the generation of the next target word
+    - Better for longer sentences
+  2. Tackling problem: Deal with information loss caused by fixed encoder
+  3. Performance: comparable to phrase-based statistical machine translation
+  4. Implementation: https://github.com/lisa-groundhog/GroundHog
+
 - Future works:
-  - further work can lead to even greater translation accuracies
+  - How to deal rare words

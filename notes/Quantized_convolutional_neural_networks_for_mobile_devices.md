@@ -23,13 +23,13 @@
 
 ## Methods
 - Basic representations of a convolutional layer, a fully-connected layer, and vector quantization
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/vector_quantization_cnn.JPG)
 
 ### Quantizing the Fully-connected Layer
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn_fc.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/vector_quantization_cnn_fc.JPG)
 
 ### Quantizing the convolution Layer
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/vector_quantization_cnn_conv.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/vector_quantization_cnn_conv.JPG)
 
 ### Quantization with Error Correction
 - Drawbacks
@@ -42,4 +42,4 @@
 
 ### Error Correction for the Fully-connected Layer
 - use block coordinate descent approach
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/error_correction.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/error_correction.JPG)

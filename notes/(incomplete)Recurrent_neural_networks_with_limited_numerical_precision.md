@@ -31,6 +31,6 @@ low-precision RNNs and produce even higher accuracy
 
 ## Methods
 - Binarization, ternarization, pow-2 ternarization, exponential quantization
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/bin_ter_quan.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/bin_ter_quan.JPG)
 
 - Need to study on Jacobian of hidden layers...

@@ -56,10 +56,13 @@ of the proposed system
 - **Here, the alignment is not a latent variable but a soft alignment**
   - allows for gradient backpropagation
 - With a decoder having an attention mechanism, the encoder doesn't have to encode all info in one fixed-length vector
- (add decoder_attention_rnn.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/decoder_attention_rnn.JPG)
+- Output is obtained as follows
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/decoder_2_attention_rnn.JPG)
 
 ### Encoder: Bidirectional RNN for annotating sequences
 - With BiRNN, the annotation of each can summarize not only preceding words but also following words
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/encoder_attention_rnn.JPG)
 
 
 ## Experiments

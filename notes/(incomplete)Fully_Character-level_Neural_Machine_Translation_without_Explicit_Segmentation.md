@@ -76,3 +76,49 @@ which can be used to improve char-level machine translation using CNNs
 - Model structure
   - more details required on highway networks, attention models and bidirectional LSTMs
 ![alt tag](https://github.com/mjc92/studies/blob/master/notes/fully_char_NMT_structure.JPG)
+
+## Experimental Settings
+- Baselines
+  a. bilingual bpe2bpe
+  b. bilingual bpe2char
+  c. bilingual char2char
+  d. multilingual bpe2char
+  e. multilingual char2char
+- Tasks
+  1. bilingual setting (single language pair)
+  2. multilingual setting (train single model from all four language pairs)
+
+## Quantitative Analysis
+- BLEU score
+  a. in bilingual setting, char2char outperforms subword-level baselines
+  b. in multilingual setting, char-level encoder outperforms subword-level encoder in all languages
+  c. translating at level of characters allows the model to discover shared constructs between languages more efficiently
+  d. for char-level translation, multilingual translation exceeds single-pair translation
+- Human evaluation
+  - humans measure adequacy and fluency of system translation
+  - used for test
+    1. bilingual bpe2char
+    2. bilingual char2char
+    3. multilingual char2char
+  - multilingual & bilingual char2char models tied for adequacy
+  - multilingual char2char has best fluency
+  
+## Qualitative analysis
+- Intra-sentence *code-switching*, or mixed utterances from two or more languages
+- char-level is more robust to typos and spelling mistakes
+- char-level correctly segments long, rare words
+- char-level can correctly detect character patterns and arrive at a correct translation from nonce words (ex. workoliday, friyay)
+- char2char models are 35% slower than bpe2char baselines (bilingual char2char takes 2 weeks)
+
+## Conclusion
+- Contributions:
+  1. New model: fully char2char NMT without explicitly hard-coded knowledge of words
+  2. Tackling problem: shows that character-level translation is beneficial
+  3. Performance: exceeds bpe2char models in bilingual and multilingual translation
+    1. more parameter efficient
+    2. can handle intra-sentence code-switching as a result of many-to-one task
+  4. Proposed material:
+    1. repository :  https://github.com/nyu-dl/dl4mt-c2c (source code, pre-trained models)
+- Future works:
+  - many-to-one extends to many-to-many
+  - model architectures and hyperparameters

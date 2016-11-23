@@ -50,14 +50,17 @@ may deteriorate performance
 - decoder that emulates searching through a source sentence during decoding a translation
 
 ### Decoder: General description
-- 
-  - gets sequence vector v from input x1~xt, and computes probability of output sequence y1~yt'
-- Our actual model differs from descriptions
-  1. used 2 difference LSTMs (input, output)
-  2. deep LSTMs work better (used 4 layer LSTM)
-  3. it is valuable to reverse the order of the words of the input sentence
-    - if a,b,c -> C,B,A then inputting c,b,a -> C,B,A gives higher results
-    - but why isn't there supporting evidence?
+- Use context vector to get annotations to which an encoder maps the input sentence
+- Alignment model *a* is a feedforward neural network which is jointly trained with all other components
+of the proposed system
+- **Here, the alignment is not a latent variable but a soft alignment**
+  - allows for gradient backpropagation
+- With a decoder having an attention mechanism, the encoder doesn't have to encode all info in one fixed-length vector
+ (add decoder_attention_rnn.JPG)
+
+### Encoder: Bidirectional RNN for annotating sequences
+- With BiRNN, the annotation of each can summarize not only preceding words but also following words
+
 
 ## Experiments
 - Dataset

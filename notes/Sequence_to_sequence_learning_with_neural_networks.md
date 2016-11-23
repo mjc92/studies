@@ -35,9 +35,9 @@
 [[paper]](https://arxiv.org/pdf/1308.0850v5.pdf) 
 [[notes]]() 
 : Introduces differentiable attention mechenism that allows neural networks to focus on different parts of their input
-- Bahdanau et al. **Get it somewhere**
-[[paper]]() 
-[[notes]]() 
+- Bahdanau et al. **Neural machine translation by jointly learning to align and translate** (must-read) 
+[[paper]](https://arxiv.org/pdf/1409.0473v7.pdf) 
+[[notes]]()  
 : Implements the attention mechanism to machine translation
 
 ## Prerequisites

@@ -20,6 +20,14 @@
   and how a sequence of symbols can be mapped to a continuous meaning representation
 
 ## Related work
+- Attentional Neural Machine Translation
+- Bahdanau et al. **Neural machine translation by jointly learning to align and translate** (must-read) 
+[[paper]](https://arxiv.org/pdf/1409.0473v7.pdf) 
+[[notes]]() 
+: **Attentional Neural Machine Translation**
+  - first introduces term "attention"
+  - uses bidirectional RNN
+  - well-known example of word-level NMT
 - Zhang et al. Character-level Convolutional Networks for Text Classification 
 [[paper]](https://arxiv.org/pdf/1509.01626v3.pdf) 
 [[notes]]() 
@@ -58,7 +66,13 @@ the byte pair encoding (BPE) algorithm
   - identifies frequent character n-grams in tr data and add them to vocabulary
   - ultimately gives a subword vocabulary of words, subwords, characters
   - model performs **subword-to-subword translation** (bpe2bpe)
+- Srivastava et al. Training very deep networks
+[[paper]](https://arxiv.org/pdf/1507.06228v2.pdf) 
+[[notes]]() 
+: introduces the highway network that is used to train very deep networks, 
+which can be used to improve char-level machine translation using CNNs
 
 ## Methods
-- 
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/rnn_lowrank.JPG)
+- Model structure
+  - more details required on highway networks, attention models and bidirectional LSTMs
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/fully_char_NMT_structure.JPG)

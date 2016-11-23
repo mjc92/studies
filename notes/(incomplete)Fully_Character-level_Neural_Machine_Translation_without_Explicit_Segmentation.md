@@ -75,7 +75,7 @@ which can be used to improve char-level machine translation using CNNs
 ## Methods
 - Model structure
   - more details required on highway networks, attention models and bidirectional LSTMs
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/fully_char_NMT_structure.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/fully_char_NMT_structure.JPG)
 
 ## Experimental Settings
 - Baselines

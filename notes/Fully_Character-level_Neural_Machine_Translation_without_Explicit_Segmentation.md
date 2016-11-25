@@ -1,5 +1,7 @@
 # Fully Character-Level Neural Machine Translation without Explicit Segmentation
 
+- Chung et al. [[paper]](https://arxiv.org/pdf/1603.06147v4.pdf) 
+
 * Motivation: NMT systems operate at words and require segmentation to extract tokens
 * Contribution: 
   1. character-to-character NMT model without explicit segmentation
@@ -23,7 +25,7 @@
 - Attentional Neural Machine Translation
 - Bahdanau et al. **Neural machine translation by jointly learning to align and translate** (must-read) 
 [[paper]](https://arxiv.org/pdf/1409.0473v7.pdf) 
-[[notes]]() 
+[[notes]](https://github.com/mjc92/studies/blob/master/notes/Neural_Machine_translation_by_Jointly_Learning_to_Align_and_Translate.md) 
 : **Attentional Neural Machine Translation**
   - first introduces term "attention"
   - uses bidirectional RNN

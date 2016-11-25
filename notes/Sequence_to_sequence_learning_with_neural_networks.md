@@ -5,7 +5,6 @@
 * Motivation: DNNs cannot map sequences to sequences
 * Contribution: 
   1. End-to-end approach to sequence learning without assumptions
-  2. Single character-level encoder across multiple languages to build multilingual translation system without increasing model size
 * Method: Multilayer LSTM to to map input sequence to a fixed vector, and another deep LSTM to decode the target sequence
 * Results: EN-FR translation task receives BLEU of 34.8, better than a phrase-based SMT system
   - + reversing the words in source sentences only improved LSTM performance by introducing short term dependencies between source

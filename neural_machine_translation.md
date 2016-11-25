@@ -19,6 +19,6 @@
   
 - Chung et al. Fully character-level neural machine translation without explicit segmentation
 [[paper]](https://arxiv.org/pdf/1603.06147v4.pdf)
-[[notes]](https://github.com/mjc92/studies/blob/master/notes/Fully_Character-level_Neural_Machine_Translation_without_Explicit_Segmentation.md) 
+[[notes]](https://github.com/mjc92/studies/blob/master/notes/Fully_Character-level_Neural_Machine_Translation_without_Explicit_Segmentation.md)
 : Displays character-to-character NMT model without explicit segmentation
 

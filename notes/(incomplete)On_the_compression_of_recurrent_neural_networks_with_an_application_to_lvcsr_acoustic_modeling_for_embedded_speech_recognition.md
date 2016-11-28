@@ -1,4 +1,6 @@
-# On the Compression of Recurrent Neural Networks with and Application to LVCSR Acoustic Modeling for Embedded Speech Recognition
+# On the Compression of Recurrent Neural Networks with an Application to LVCSR Acoustic Modeling for Embedded Speech Recognition
+[[paper]](https://arxiv.org/pdf/1603.08042v2.pdf)
+- Prabhavalkar et al.
 
 * Motivation: Speech recognition algorithms are too heavy to directly be put "on-device"
 * Contribution: Study techniques that can be used to compress RNN acoustic models
@@ -23,4 +25,4 @@
 
 ## Methods
 - 
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/rnn_lowrank.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/rnn_lowrank.JPG)

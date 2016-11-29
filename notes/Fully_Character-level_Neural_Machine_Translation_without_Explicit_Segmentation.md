@@ -1,6 +1,6 @@
 # Fully Character-Level Neural Machine Translation without Explicit Segmentation
 
-- Chung et al. [[paper]](https://arxiv.org/pdf/1603.06147v4.pdf) 
+- Lee et al. [[paper]](https://arxiv.org/pdf/1610.03017v2.pdf) 
 
 * Motivation: NMT systems operate at words and require segmentation to extract tokens
 * Contribution: 

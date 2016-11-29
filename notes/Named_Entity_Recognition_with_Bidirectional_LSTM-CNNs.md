@@ -3,35 +3,32 @@
 [[paper]](https://www.aclweb.org/anthology/Q/Q16/Q16-1026.pdf)
 - ACL 2016
 
-* Motivation: In NMT, encoding a source sentence into a fixed-length vector is a bottleneck
+* Motivation: NER usually requires loads of feature engineering
 * Contribution: 
-  1. End-to-end approach to sequence learning without assumptions
-  2. Single character-level encoder across multiple languages to build multilingual translation system without increasing model size
+  1. NER model that combines CNN + LSTM to learn both char- and word- level features and does not require external features
+  2. a novel method of encoding partial lexicon matches in NNs
 * Method: 
-* Results: Translation performance comparable to state-of-the-art in EN-FR translation
-  - qualitative analysis reveals that (soft-)alignments found by the model are agreeable
+* Results:
+  1. Using only tokenized text and publicly available word embeddings, our model performs similarly to state-of-the-art models
+  2. Using two lexicons constructed from publicly available sources, our model exceeds those with heavy feature engineering
 * Future work: 
 
 ## Introduction
-- When using encoder-decoder approach for NMT, fixing all info of a source sentence into a fixed-length vector
-may deteriorate performance
-- Se we introduce an encoder-decoder model which learns to align and translate jointly
-  - Each time the model generates a word in a translation, it (soft-)searches for a set of posiitons in a source sentence
-  where the most relevant information is concentrated
-  - The model then predicts a target word based on the context vectors associated with these positions and all previouly generated
-  target words
-  - Simply put, **ATTENTION**
+- Collobert's NER model implements NN and is free from feature engineering, but
+  1. uses simple FFNN where context is restricted to a fixed sized window around each word and discards long-distance relationships
+  2. solely depends on word embeddings and does not consider character level features that can help translate rare words
+- RNNs and LSTMs are useful
+  1. LSTMs help learn long-distance dependencies
+  2. BiLSTM can take into account infinite amount of context on both sides of a word and eliminates problem of limited context
+- CNNs are good for learning character-level information
+  1. biLSTMs also considered, but performed not that much better than CNNs while costing more
+  
 
 ## Related work
-- Encoder-Decoder NMT models
-- Sutskever et al. Sequence to sequence learning with neural networks
+- Ling et al. Sequence to sequence learning with neural networks
 [[paper]](http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) 
 [[notes]](https://github.com/mjc92/studies/blob/master/notes/Sequence_to_sequence_learning_with_neural_networks.md) 
-: one example of an encoder-decoder, uses 2 LSTM models
-- Cho et al. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
-[[paper]](https://arxiv.org/pdf/1406.1078v3.pdf) 
-[[notes]]() 
-: one example of an encoder-decoder
+: presents biLSTM for character level
 - Cho et al. On the properties of neural machine translation: Encoder-Decoder approaches
 [[paper]]() 
 [[notes]]() 
@@ -43,7 +40,24 @@ may deteriorate performance
 
 
 ## Prerequisites
-- RNN Encoder-Decoder
+- Collobert et al. A Unified Architecture for Natural Language Processing: Deep Neural Networks with Multitask Learning
+[[paper]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.8551&rep=rep1&type=pdf) 
+[[notes]]() 
+: predecessor
+  - lookup tables transform features such as words and chars into continuous vector representations, which are fed into a NN
+- Graves et al. Speech Recognition with Deep Neural Networks
+[[paper]](https://www.cs.toronto.edu/~fritz/absps/RNN13.pdf) 
+[[notes]]() 
+: applies BiLSTM in speech-recognition
+- Santos et al. Boosting Named Entity Recognition with Neural Character Embeddings
+[[paper]](https://arxiv.org/pdf/1505.05008v2.pdf) 
+[[notes]]() 
+: uses CNNs to extract character-level features for NER
+- Labeau et al. Non-lexical neural architecture for fine-grained POS Tagging
+[[paper]](http://www.aclweb.org/anthology/D15-1025) 
+[[notes]]() 
+: uses CNNs to extract character-level features for POS-tagging
+
 
 ## Methods
 - bidirectional RNN as encoder

@@ -101,10 +101,8 @@ or phonemes
 - Tasks
   1. Improve translation of rare and unseen words in NMT by representing them via subword units
   2. Find best segmentation in terms of vocabulary size, text size, and translation quality
-  
-  - more details required on highway networks, attention models and bidirectional LSTMs
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/fully_char_NMT_structure.JPG)
 
+------------------------------------------------------incomplete---------------------------------------------
 ## Experimental Settings
 - Baselines
   a. bilingual bpe2bpe

@@ -60,6 +60,8 @@
 
 
 ## Methods
+
+### Advanced NER model using biLSTM and CNN
 - bidirectional LSTM for obtaining word-level information
   ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM.JPG)  
 - CNN for obtaining char-level features
@@ -72,54 +74,21 @@
   - applies biLSTM on output vector
   ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM_CNN_for_NER.JPG)  
   
-### Decoder: General description
-- Use context vector to get annotations to which an encoder maps the input sentence
-- Alignment model *a* is a feedforward neural network which is jointly trained with all other components
-of the proposed system
-- **Here, the alignment is not a latent variable but a soft alignment**
-  - allows for gradient backpropagation
-- With a decoder having an attention mechanism, the encoder doesn't have to encode all info in one fixed-length vector
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/decoder_attention_rnn.JPG)
-- Output is obtained as follows
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/decoder_2_attention_rnn.JPG)
-
-### Encoder: Bidirectional RNN for annotating sequences
-- With BiRNN, the annotation of each can summarize not only preceding words but also following words
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/encoder_attention_rnn.JPG)
+### Lexicons
+- 
 
 
 ## Experiment Setting
-
-### Models
-1. RNN Encoder-Decoder (Cho et al)
-2. Our model (RNNsearch)
-- beam search applied
-
-## Results
-
-### Quantitative Results
-- BLEU
-  - RNNsearch outperforms conventional RNN Encoder-Decoder
-    - because we don't use fixed-length context vector
-    - doesn't drop as the length of sentence increases
-  - As high as conventional phrase-based translation system
-
-### Qualitative Analysis
-- attention focus
-  - correctly attends from source sentence
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/NMT_alignment.JPG)
-
-- With soft-alignment it is possible to look at source and target phrases of different lengths
+- 
 
 ## Conclusion
 - Contributions:
-  1. New model: Introduction to soft attention
-    - No need to encode a whole source sentence into a fixed-length vector
-    - Model can focus only on information relevant to the generation of the next target word
-    - Better for longer sentences
-  2. Tackling problem: Deal with information loss caused by fixed encoder
-  3. Performance: comparable to phrase-based statistical machine translation
-  4. Implementation: https://github.com/lisa-groundhog/GroundHog
+  1. New model: incorporates biLSTM and char-level CNN
+    - partial matching lexicon algorithm
+  2. Tackling problem: Improve previous NN models on NER and reduce feature engineering
+  3. Performance: 
+    - state-of-the-art in NER tasks with little feature engineering
+    - can learn complex relationships from large amounts of data
 
 - Future works:
-  - How to deal rare words
+  - improvement through more flexible application of existing lexicons

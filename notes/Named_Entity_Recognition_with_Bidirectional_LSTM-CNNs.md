@@ -65,7 +65,12 @@
 - CNN for obtaining char-level features
   ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/char_level_CNN.JPG)  
 - combined model
-  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM_CNN_NER.JPG)  
+  - takes input in word-level
+    1. word embeddings
+    2. additional word features
+    3. individual char- features extracted from CNN
+  - applies biLSTM on output vector
+  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM_CNN_for_NER.JPG)  
   
 ### Decoder: General description
 - Use context vector to get annotations to which an encoder maps the input sentence

@@ -60,9 +60,13 @@
 
 
 ## Methods
-- bidirectional RNN as encoder
-- decoder that emulates searching through a source sentence during decoding a translation
-
+- bidirectional LSTM for obtaining word-level information
+  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM.JPG)  
+- CNN for obtaining char-level features
+  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/char_level_CNN.JPG)  
+- combined model
+  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM_CNN_NER.JPG)  
+  
 ### Decoder: General description
 - Use context vector to get annotations to which an encoder maps the input sentence
 - Alignment model *a* is a feedforward neural network which is jointly trained with all other components

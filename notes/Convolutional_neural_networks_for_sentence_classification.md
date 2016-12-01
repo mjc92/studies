@@ -15,18 +15,7 @@
 
 
 ## Related work
-- Ling et al. Sequence to sequence learning with neural networks
-[[paper]](http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) 
-[[notes]](https://github.com/mjc92/studies/blob/master/notes/Sequence_to_sequence_learning_with_neural_networks.md) 
-: presents biLSTM for character level
-- Cho et al. On the properties of neural machine translation: Encoder-Decoder approaches
-[[paper]]() 
-[[notes]]() 
-: shows how performance drops when sentences become longer
-- Graves et al. Generating Sequences With Recurrent Neural Networks
-[[paper]](https://arxiv.org/pdf/1308.0850v5.pdf) 
-[[notes]]() 
-: used bidirectional RNN(BiRNN) in speech recognition
+
 
 
 ## Prerequisites
@@ -34,18 +23,6 @@
 [[paper]](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) 
 [[notes]]() 
 : Word2Vec used on convolutional layer of this paper
-- Graves et al. Speech Recognition with Deep Neural Networks
-[[paper]](https://www.cs.toronto.edu/~fritz/absps/RNN13.pdf) 
-[[notes]]() 
-: applies BiLSTM in speech-recognition
-- Santos et al. Boosting Named Entity Recognition with Neural Character Embeddings
-[[paper]](https://arxiv.org/pdf/1505.05008v2.pdf) 
-[[notes]]() 
-: uses CNNs to extract character-level features for NER
-- Labeau et al. Non-lexical neural architecture for fine-grained POS Tagging
-[[paper]](http://www.aclweb.org/anthology/D15-1025) 
-[[notes]]() 
-: uses CNNs to extract character-level features for POS-tagging
 
 
 ## Model

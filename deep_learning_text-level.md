@@ -1,9 +1,10 @@
-# Neural Machine Translation
+# Deep learning in text-level
 
 - Inspired by work of Yunjey Choi (https://github.com/yunjey/deeplearning-papers#deeplearning-papers-2016119-)
 
 ## Paper lists
 
+### Neural Machine Translation
 - Sutskever et al. Sequence-to-sequence learning with neural networks
 [[paper]](http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) 
 [[notes]](https://github.com/mjc92/studies/blob/master/notes/Sequence_to_sequence_learning_with_neural_networks.md) 
@@ -22,3 +23,9 @@
 [[notes]](https://github.com/mjc92/studies/blob/master/notes/Fully_Character-level_Neural_Machine_Translation_without_Explicit_Segmentation.md)
   - Displays character-to-character NMT model without explicit segmentation
 
+### Text classification
+- Kim, Convolutional Neural Networks for Sentence Classification
+[[paper]](https://arxiv.org/pdf/1408.5882v2.pdf)
+[[notes]]()
+
+- 

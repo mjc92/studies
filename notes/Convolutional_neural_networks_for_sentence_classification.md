@@ -91,20 +91,6 @@
 ### Further Observations
 - dropout is a good regularizer (2~4% performance boost)
 
-### Advanced NER model using biLSTM and CNN
-- bidirectional LSTM for obtaining word-level information
-  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM.JPG)  
-- CNN for obtaining char-level features
-  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/char_level_CNN.JPG)  
-- combined model
-  - takes input in word-level
-    1. word embeddings
-    2. additional word features
-    3. individual char- features extracted from CNN
-  - applies biLSTM on output vector
-  ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/biLSTM_CNN_for_NER.JPG)  
-  
-
 ## Conclusion
 - Contributions:
   1. New model: a simple CNN with one layer of convolution performs well

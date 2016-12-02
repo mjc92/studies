@@ -76,54 +76,50 @@
 
 ## Model
 - Model structure
-  - max pooling instead of average pooling (Collobert et al.)
-    - because only a few words and their combination are useful for capturing the meaning of a document
-    - time complexity O(n)
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_model.JPG)
-- Pre-training word embedding
-  - Skip-gram used to pre-train the word embedding
-- speedup approaches (e.g. hierarchical softmax) will be used
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/text_classification_2D_model.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/text_classification_2D_setting.JPG)
 
-## Experiment settings
+## Experimental Setup
 
 - Datasets
-  a. 20Newsgroups (category)
-  b. Fudan set (document classification)
-  c. ACL Anthology Network (language)
-  d. Stanford Sentiment Treebank (very negative ~ very positive)
+  a. MR (pos/neg)
+  b. SST-1 (Stanford Sentiment Treebank) (very negative ~ very positive)
+  c. SST-2 (pos/neg)
+  d. Subj (subjective/objective)
+  e. TREC (classify question type)
+  f. 20Newsgroups (category)
 
-- Experiment Settings
-  - hyper-parameter settings brought from Collobert et al.
-  - learning rate: 0.01, hidden layer size: 100, word embedding size: 50, context vector size: 50
-  
-- Comparison of Methods
-  - use unigram/bigram as features, measure with LR and SVM
-  - use weighted average of word embeddings and then apply softmax layer, weight of each word is tf-idf value
-  - LDA for capturing the semantics of texts in classification tasks (ClassifyLDA-EM, Labeled-LDA)
-  - tree kernels as features for language classification tasks (context-free grammar, re-ranking feature set(C&J)
-  - RecursiveNN + Recursive Neural Tensor Network taken as comparison measures
-  - CNN by Collobert et al. for comparison
+- Word embeddings
+  - GloVe on 6 billion tokens of Wikipedia 2014 and Gigaword 5
+- Hyper-parameter Settings
+  - 10% as development set
+  - Macro-F1 measure for 20Newsgroups, accuracy for other datasets
+  - Hyper-parameters
+    - word embedding dimension: 300
+    - hidden units of LSTM: 300
+    - 100 convolutional filters each for window size (3,3), 2D pooling of (2,2)
+    - mini-batch size as 10
+    - AdaDelta with default value 1.0
+    - Dropout with 0.5 for word embeddings, 0.2 for BLSTM and 0.4 for penultimate layer
+    - l2 penalty with coef 10^-5 pver [ara,eters
+  - values chosen via a grid search on the SST-1 development set
 
 
-## Results and Discussion
-- NN outperforms traditional methods for all datasets
-  - NN-based approach can compose the semantic representation of texts than BoW models, and suffer less from data sparsity
-- (R)CNNs perform better tharn RecursiveNNs
-  - CNN-framework is more suitable for constructing the semantic representation of texts compared with previous NNs
-  - CNn can select more discriminative features through the max-pooling layer and capture contextual info through
-    conv. layer, while RecursiveNN only captures from the textual tree
-  - lower time complexity (O(n)) compared to O(n^2)
-  - RCNN outperforms state-of-the-art in most fields
-  - RCNN outperforms CNN in all cases
-- Contextual Information
-  - CNN requires a fixed window size: small window(loss of long-dist. patterns) vs. wide window(data sparsity)
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_results.JPG)
+## Results
+- Overall performance
+  - BLSTM-2DCNN does good in 4/6 tasks
+  - BLSTM-2DPooling does worse than state-of-the-art models
+- Effect of Sentence Length
+  - accuracies decline with the length of sentences increasing
+- Effect of 2D convolutional filter and 2D max pooling size
+  - best with 2D filter size (5,5) and 2D max pooling size (5,5)
   
 
 ## Conclusion
 - Contributions:
-  1. New model: RCNN
-  2. Tackling problem: effective model without external features
-  3. Performance: proven effective in 4 text classification datasets
+  1. New model: BLSTM-2DPooling, BLSTM-2DCNN (extension of first model)
+  2. Tackling problem: hold feature vector dimension information as well as time-step dimension information
+  3. Performance: 2DCNN outperforms previous models, 2DPooling and DSCNN
+    - sensitivity analysis on SST-1 dataset shows that large filters can detect more features
   4. Proposed material:
 - Future works:

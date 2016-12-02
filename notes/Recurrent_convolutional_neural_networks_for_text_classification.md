@@ -59,7 +59,7 @@
   - max pooling instead of average pooling (Collobert et al.)
     - because only a few words and their combination are useful for capturing the meaning of a document
     - time complexity O(n)
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/fully_char_NMT_structure.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_model.JPG)
 - Pre-training word embedding
   - Skip-gram used to pre-train the word embedding
 - speedup approaches (e.g. hierarchical softmax) will be used
@@ -84,21 +84,7 @@
   - RecursiveNN + Recursive Neural Tensor Network taken as comparison measures
   - CNN by Collobert et al. for comparison
 
-## Quantitative Analysis
-- BLEU score
-  a. in bilingual setting, char2char outperforms subword-level baselines
-  b. in multilingual setting, char-level encoder outperforms subword-level encoder in all languages
-  c. translating at level of characters allows the model to discover shared constructs between languages more efficiently
-  d. for char-level translation, multilingual translation exceeds single-pair translation
-- Human evaluation
-  - humans measure adequacy and fluency of system translation
-  - used for test
-    1. bilingual bpe2char
-    2. bilingual char2char
-    3. multilingual char2char
-  - multilingual & bilingual char2char models tied for adequacy
-  - multilingual char2char has best fluency
-  
+
 ## Results and Discussion
 - NN outperforms traditional methods for all datasets
   - NN-based approach can compose the semantic representation of texts than BoW models, and suffer less from data sparsity
@@ -111,17 +97,13 @@
   - RCNN outperforms CNN in all cases
 - Contextual Information
   - CNN requires a fixed window size: small window(loss of long-dist. patterns) vs. wide window(data sparsity)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_result.JPG)
   
 
 ## Conclusion
 - Contributions:
-  1. New model: fully char2char NMT without explicitly hard-coded knowledge of words
-  2. Tackling problem: shows that character-level translation is beneficial
-  3. Performance: exceeds bpe2char models in bilingual and multilingual translation
-    1. more parameter efficient
-    2. can handle intra-sentence code-switching as a result of many-to-one task
+  1. New model: RCNN
+  2. Tackling problem: effective model without external features
+  3. Performance: proven effective in 4 text classification datasets
   4. Proposed material:
-    1. repository :  https://github.com/nyu-dl/dl4mt-c2c (source code, pre-trained models)
 - Future works:
-  - many-to-one extends to many-to-many
-  - model architectures and hyperparameters

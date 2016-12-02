@@ -26,10 +26,9 @@
 ### Text classification
 - Kim, Convolutional Neural Networks for Sentence Classification
 [[paper]](https://arxiv.org/pdf/1408.5882v2.pdf)
-[[notes]]()
-  - very simple form of text CNN
-  - still, it worked
-
+[[notes]](https://github.com/mjc92/studies/blob/master/notes/Convolutional_neural_networks_for_sentence_classification.md)
+  - Basic implementation of a CNN that takes sentences as inputs
+  - Surprisingly simple, yet good results
 - Lai et al, Recurrent Convolutional Neural Networks for Text Classification
 [[paper]](http://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/download/9745/9552)
 [[notes]](https://github.com/mjc92/studies/blob/master/notes/Recurrent_convolutional_neural_networks_for_text_classification.md)

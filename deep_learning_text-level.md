@@ -38,4 +38,4 @@
 
 - Zhou et al, Text Classification Improved by Integrating Bidirectional LSTM with Two-dimensional Max Pooling
 [[paper]](https://arxiv.org/pdf/1611.06639v1.pdf)
-[[notes]]()
+[[notes]](https://github.com/mjc92/studies/blob/master/notes/Text_classification_improved_by_integrating_bidirectional_LSTM_with_two-dimensional_max_pooling.md)

@@ -27,5 +27,15 @@
 - Kim, Convolutional Neural Networks for Sentence Classification
 [[paper]](https://arxiv.org/pdf/1408.5882v2.pdf)
 [[notes]]()
+  - very simple form of text CNN
+  - still, it worked
 
-- 
+- Lai et al, Recurrent Convolutional Neural Networks for Text Classification
+[[paper]](http://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/download/9745/9552)
+[[notes]](https://github.com/mjc92/studies/blob/master/notes/Recurrent_convolutional_neural_networks_for_text_classification.md)
+  - a form of BiRNN to get short-term context + max-pooling
+  - not sure if it can be called RNN + CNN when only one max-pooling layer was used
+
+- Zhou et al, Text Classification Improved by Integrating Bidirectional LSTM with Two-dimensional Max Pooling
+[[paper]](https://arxiv.org/pdf/1611.06639v1.pdf)
+[[notes]]()

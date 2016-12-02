@@ -97,7 +97,7 @@
   - RCNN outperforms CNN in all cases
 - Contextual Information
   - CNN requires a fixed window size: small window(loss of long-dist. patterns) vs. wide window(data sparsity)
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_result.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/RCNN_text_classification_results.JPG)
   
 
 ## Conclusion

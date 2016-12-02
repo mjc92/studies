@@ -2,6 +2,7 @@
 - Yoon Kim
 [[paper]](https://arxiv.org/pdf/1408.5882v2.pdf)
 - 2014
+- overview: a very simple paper
 
 * Motivation: NER usually requires loads of feature engineering
 * Contribution: 

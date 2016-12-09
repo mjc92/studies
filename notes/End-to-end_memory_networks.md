@@ -23,30 +23,29 @@
 
 ## Related work
 - Graves et al. Neural turing machines   
-[[paper]]() 
+[[paper]](https://arxiv.org/pdf/1410.5401v2.pdf) 
 [[notes]]() 
 : also uses a continuous memory representation
   - uses both content and address-based access (ours uses only content-based access)
   - a more complex model (ex. requires sharpening)
   - more abstract operations of sorting and recall are challenges compared to this model which is applied to textual reasoning
 - Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention  
-[[paper]]() 
+[[paper]](https://arxiv.org/pdf/1502.03044v3.pdf) 
 [[notes]]() 
 : Similar in that it uses an attention model
 - Zaremba et al. Recurrent neural network regularization
-[[paper]]() 
+[[paper]](https://arxiv.org/pdf/1409.2329v5.pdf) 
 [[notes]]() 
 : state-of-the-art for language modeling
   - uses very large LSTMs with Dropout
 - Mikolov et al. Learning longer memory in recurrent neural networks
-[[paper]]() 
+[[paper]](https://arxiv.org/pdf/1412.7753v2.pdf) 
 [[notes]]() 
 : state-of-the-art for language modeling
   - uses RNNs with diagonal constraints on the weight matrix
 
 
 ## Prerequisites
-
 - Weston et al, Memory Networks
 [[paper]](https://web.eecs.umich.edu/~honglak/naacl2016-dscnn.pdf)
 [[notes]]()
@@ -57,18 +56,6 @@
 [[paper]](복붙)
 [[notes]](복붙)
 : similar, pllus multiple computational steps performed per output symbol
-
-
-- Misunderstanding: 1D convolutional filter in NLP tasks has one dimension?
-  - (X) two dimensions (k,d)
-- Zhang et al, Dependency sensitive convolutional neural networks for modeling sentences and documents
-[[paper]](https://web.eecs.umich.edu/~honglak/naacl2016-dscnn.pdf)
-[[notes]]()
-: introduces DSCNN, utilizes LSTM, applies 1D convolution and 1D max pooling
-- Wen et al, Learning text representation using recurrent convolutional neural network with highway layers
-[[paper]](https://arxiv.org/pdf/1606.06905.pdf)
-[[notes]]()
-: introduces RCNN, utilizes biRNN, applies 1D convolution and 1D max pooling
 
 
 ## Approach

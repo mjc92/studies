@@ -73,7 +73,7 @@
 
 ## Approach
 - Model structure
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end-mem_network_model.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_model.JPG)
 - Weight tying scheme
   1. adjacent
   2. layer-wise (RNN-like)
@@ -94,45 +94,75 @@
   - Settings
     - there are I<=320 sentences for each example problem; a question sentence *q* and answer *a*
       - maximum 320 sentences for 1 question??
-    - sentence representation
-      ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_sentence_representation.JPG)
-
       
 - Model Details
   - K=3 hops used with (type1) adjacent weight sharing
-  - for sentence representation, we use 
+  - sentence representation
+    ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_sentence_representation.JPG)
+  - add temporal encoding
+    - m_i = (sig_j) A x_ij + T_A(i) (<--- *i*th row of a matrix T_A that encodes temporal info, learned through training)
+  - add random noise (RN) for regularizing T_A
+    - at training we randomly add 10% of empty memories to stories 
     
-- Word embeddings
-  - GloVe on 6 billion tokens of Wikipedia 2014 and Gigaword 5
-- Hyper-parameter Settings
-  - 10% as development set
-  - Macro-F1 measure for 20Newsgroups, accuracy for other datasets
-  - Hyper-parameters
-    - word embedding dimension: 300
-    - hidden units of LSTM: 300
-    - 100 convolutional filters each for window size (3,3), 2D pooling of (2,2)
-    - mini-batch size as 10
-    - AdaDelta with default value 1.0
-    - Dropout with 0.5 for word embeddings, 0.2 for BLSTM and 0.4 for penultimate layer
-    - l2 penalty with coef 10^-5 pver [ara,eters
-  - values chosen via a grid search on the SST-1 development set
-
+- Baselines
+  - MemN2N: ours
+  - MemNN : AM+NG+NL Memory Networks from "Towards AI-complete question answering: A set of prerequisite toy tasks"
+  - MemNN-WSH : weakly supervised heuristic version of MemNN
+  - LSTM : standard LSTM
 
 ## Results
-- Overall performance
-  - BLSTM-2DCNN does good in 4/6 tasks
-  - BLSTM-2DPooling does worse than state-of-the-art models
-- Effect of Sentence Length
-  - accuracies decline with the length of sentences increasing
-- Effect of 2D convolutional filter and 2D max pooling size
-  - best with 2D filter size (5,5) and 2D max pooling size (5,5)
-  
+- Design choices
+  (i) BoW vs Position Encoding (PE)
+  (ii) all 20 tasks independently using embedding of d=20 vs jointly training using d=50
+  (iii) two phase training (linear start where softmaxes are removed initially) vs training with softmaxes from the start
+  (iv) memory hops from 1 to 3
+- Interesting points
+  - best MemN2N models are close but inferior to supervised models
+  - comfortably beats the weakly supervised baseline methods
+  - PE improves over BoW
+  - linear start (LS) helps avoid local minima
+  - using random empty memories (RN) for time index gives small but consistent boost in performance
+  - joint training always helps
+  - **more computational hops give improved performance**
+
+## Language Modeling Experiments
+- predict the next word in a text sequence given the previous words *x*
+  - word level instead of sentence level
+  - the previous *N* words in the sequence are embedded into memory separately
+  - each memory cell holds only a single word -> no need for BoW or linear mapping (sentence representations)
+- changes to model
+  - *q* is fixed to a constant vector 0.1 without embedding (no question)
+  - output softmax predicts which word in vocabulary is next in sequence
+  - add ReLU to half of the units in each layer
+  - now apply layer-wise (RNN-like) weight sharing
+- datasets
+  - Penn Tree Bank
+  - Text8
+- Training details
+  - for each mini-batch, measure l2 norm of the whole gradient of all parameters
+  - if norm is larger than *L*=50, scale down to have norm *L*
+  - early termination (if learning rate drops below 10^-5 or 50 epochs)
+  - weights initialized by N(0, 0.05) and batch size=128
+- Results
+  - compared to RNN, LSTM, and Structurally Constrained Recurrent Nets (SCRN)
+  - MemN2N gives lower perplexity on datasets
+  - increasing the number of hops helps
+    - some hops concentrate only on recent words, other hops have attention over all memory locations
+    - two types of hops seem to alternate
+ - doesn't decay exponentially like a traditional RNN, but has the same average activation across the entire memory
+
 
 ## Conclusion
 - Contributions:
-  1. New model: BLSTM-2DPooling, BLSTM-2DCNN (extension of first model)
-  2. Tackling problem: hold feature vector dimension information as well as time-step dimension information
-  3. Performance: 2DCNN outperforms previous models, 2DPooling and DSCNN
-    - sensitivity analysis on SST-1 dataset shows that large filters can detect more features
+  1. New model: NN with explicit memory and recurrent attention that can be backprop-ed for LM and QA
+  2. Tackling problem: no supervision of supporting facts compared to Memory Network, can be used in a wider range
+  3. Performance:
+    - same performance as Memory Networks
+    - better than other baselines with same level of supervision
+    - LM: slightly outperforms tuned RNNs and LSTMs of comparable complexity
+    - increasing the hop number improves performance
   4. Proposed material:
 - Future works:
+  - currently unable to exactly match the performance of Memory Networks trained with strong supervision
+  - smooth lookups may not scale well to cases where larger memory is required
+  - planning to explore multiscale notions of attention or hashing

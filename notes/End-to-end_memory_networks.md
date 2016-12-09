@@ -9,58 +9,40 @@
   1. RNN where recurrence reads from a large external memory multiple times before outputting a symbol
   2. Same performance as Memory Network model with wider applicability
     - excellent performance on 4 out of 6 tasks
-  3. experiments on Stanford Sentiment Treebank fine-grained task
-    - performance of models on different length of sentences
-    - sensitivity analysis of 2D filter and max pooling size
 * Method: 
-    1. BLSTM to capture long-term sentence dependencies
-    2. extracts features by 2D convolution and 2D max pooling operation for sequence modeling
 * Results: 
 * Future work: 
 
 ## Introduction
-- RNNs can capture features from text of variable length
-  1. convert tokens comprising each text into vectors (word embeddings), and form a matrix
-  1. feature selection methods (frequency, MI, pLSA, lDA) used
-  2. however, they ignore the contextual information or word order in texts and can't capture semantics well
-- Pre-trained word embeddings and DNNs can help capture the semantic representation of texts
-  1. Recursive Neural Network (RecursiveNN) constructs sentence representation well, but captures semantics via a tree structure
-    - performance dependes on textual tree construction performance
-    - time complexity O(n^2)
-    - so, it is unsuitable for modeling long sentences or documents
-  2. Recurrent Neural Network
-    - time complexity O(n)
-    - can capture contextual information and the semantics of long texts
-    - biased: latter words are more dominant than earlier words, less effective in capturing semantics of a whole document
-  3. Convolutional Neural Network
-    - unbiased: can fairly determine discriminative phrases in a text with a max-pooling layer
-    - time complexity O(n)
-    - using convolutional kernels with a fixed window size; hard to determine size (info loss vs large parameter space)
-  4. **Solution: Recurrent Convolutional Neural Network**
-    1. bi-directional recurrent structure
-      -less noise compared to traditional window-based network when 
-      capturing contextual information as much as possible when learning word representations
-      - the model can reserve a larger range of the word ordering when learning representations of text
-    2. max-pooling layer that judges which features are important in text classification
+- Two approaches have been made to build models that make multiple computational steps in QA or task completion + describe long term dependencies in sequential data
+  - Memory networks
+  - Attention + RNN
+- Here we combine them to create an RNN architecture where recurrence reads from an external memory multiple times before outputting a symbol
+- unlike memory networks, ours is continuous and can be trained end-to-end and requires less supervision
+- unlike RNNsearch, ours has multiple computational steps("hops") which shows better performance
 
 ## Related work
-- Zhou et al. A c-lstm neural network for text classification   
-[[paper]](https://pdfs.semanticscholar.org/10f6/2af29c3fc5e2572baddca559ffbfd6be8787.pdf) 
+- Graves et al. Neural turing machines   
+[[paper]]() 
 [[notes]]() 
-: used CNN to extract a sequence of higher-level phrase representations and feed them into an LSTM to obtain the sentence representation
-- Zhou et al. Attention-based bidirectional long short-term memory networks for relation classification  
-[[paper]](https://arxiv.org/pdf/1509.01626v3.pdf) 
+: also uses a continuous memory representation
+  - uses both content and address-based access (ours uses only content-based access)
+  - a more complex model (ex. requires sharpening)
+  - more abstract operations of sorting and recall are challenges compared to this model which is applied to textual reasoning
+- Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention  
+[[paper]]() 
 [[notes]]() 
-: BLSTM with attention mechanism to automatically select features that have a decisive effect on classification
-
-- Yang et al. Hierarchical attention networks for document classification
-[[paper]](https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf) 
+: Similar in that it uses an attention model
+- Zaremba et al. Recurrent neural network regularization
+[[paper]]() 
 [[notes]]() 
-: introduces a hierarchical network with two levels of attention mechanisms (word / sentence attention) for document classification
-- Kalchbrenner et al. A convolutional neural network for modelling sentences
-[[paper]](https://arxiv.org/pdf/1404.2188v1.pdf) 
+: state-of-the-art for language modeling
+  - uses very large LSTMs with Dropout
+- Mikolov et al. Learning longer memory in recurrent neural networks
+[[paper]]() 
 [[notes]]() 
-: a dynamic k-max pooling mechanism for sentence modeling
+: state-of-the-art for language modeling
+  - uses RNNs with diagonal constraints on the weight matrix
 
 
 ## Prerequisites
@@ -89,21 +71,37 @@
 : introduces RCNN, utilizes biRNN, applies 1D convolution and 1D max pooling
 
 
-## Model
+## Approach
 - Model structure
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/text_classification_2D_model.JPG)
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/text_classification_2D_setting.JPG)
+![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end-mem_network_model.JPG)
+- Weight tying scheme
+  1. adjacent
+  2. layer-wise (RNN-like)
+    - model resembles an RNN where outputs are divided into "internal" and "external" outputs
+    - internal output : considering memory
+    - external output : predicting a label
 
 ## Experimental Setup
 
 - Datasets
-  a. MR (pos/neg)
-  b. SST-1 (Stanford Sentiment Treebank) (very negative ~ very positive)
-  c. SST-2 (pos/neg)
-  d. Subj (subjective/objective)
-  e. TREC (classify question type)
-  f. 20Newsgroups (category)
+  - QA tasks consisting of a set of statements, followed by a question whose answer (typically) is a single word
+    a. Sam walks into the kitchen.
+    b. Sam picks up an apple.
+    c. Sam walks into the bedroom.
+    d. Sam drops the apple.
+    *Q: Where is the apple?*
+    **A: Bedroom**
+  - Settings
+    - there are I<=320 sentences for each example problem; a question sentence *q* and answer *a*
+      - maximum 320 sentences for 1 question??
+    - sentence representation
+      ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_sentence_representation.JPG)
 
+      
+- Model Details
+  - K=3 hops used with (type1) adjacent weight sharing
+  - for sentence representation, we use 
+    
 - Word embeddings
   - GloVe on 6 billion tokens of Wikipedia 2014 and Gigaword 5
 - Hyper-parameter Settings

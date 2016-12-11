@@ -1,5 +1,5 @@
 # Memory Networks
-- Weston et al. [[paper]](https://web.eecs.umich.edu/~honglak/naacl2016-dscnn.pdf) 
+- Weston et al. [[paper]](https://arxiv.org/pdf/1410.3916v11.pdf) 
 
 
 * Motivation: 
@@ -71,6 +71,26 @@
   - e.g. R can be an RNN that is conditioned on the output of O
 
 ## A MemNN implementation for text
+- Basic Model
+  - I: input text (sentence), stored in memory as original form
+    - S(x) returns the next empty memory slot N (N<-N+1)
+  - G: just stores original sentence
+  - O: finds k supporting memories given x (k~2)
+    - k=1: o1=O1(x,m) = argmax s_o(xm_i)
+    - k=2: o2=O2(x,m) = argmax s_O([x,m_o1],m1)
+    - final output o = [x,m_o1,m_o2]
+  - R: simply returns m_ok, or by RNN
+    - r = argmax s_R([x,m_o1,m_o2],w) <---- find w
+    - scoring functions s_O and s_R have the same form
+  - Training
+- Word sequences as input
+- Efficient memory via hashing
+  - hashing words (inefficient)
+  - hashing via clustering word embeddings
+- Modeling write time
+  - 
+- Modeling previously unseen words
+- Exact matches and unseen words
 
 - Datasets
   - QA tasks consisting of a set of statements, followed by a question whose answer (typically) is a single word

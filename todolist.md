@@ -1,0 +1,2 @@
+- Sennrich. How Grammatical is Character-level Neural Machine Translation? Assessing MT Quality with Contrastive Translation Pairs
+  - https://arxiv.org/abs/1612.04629

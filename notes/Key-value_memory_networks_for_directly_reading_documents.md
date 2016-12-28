@@ -88,96 +88,76 @@ to unstructured documents
       - at final reading step, the values of selected memories are read by taking a weighted sum (x relevance prob)
 
 - Model structure
-![alt tag](https://lh5.googleusercontent.com/ZJAEgKnmkK9wy17PX1YGQ7V1NNx6vFQuSI3-lp4xvWMPSDApq8ki6U0LswZsUaW9gVRfhb3nqyqxxoA=w958-h1050-rw)
-- Weight tying scheme
-  1. adjacent
-  2. layer-wise (RNN-like)
-    - model resembles an RNN where outputs are divided into "internal" and "external" outputs
-    - internal output : considering memory
-    - external output : predicting a label
+![alt tag](https://lh4.googleusercontent.com/QW4GtaLuQ_HXpHSjv-O_xHYoqRzkEneyMKkLahQSDPRNlbQnRApxer9uvnlvVNhUPc14sjEqVR6Ifxk=w1484-h1043-rw)
 
-## Experimental Setup
+- Key-Value Memories
+  - Variations in defining transformation matrices for X, Y, K and V
+    - During experiments they fixed X and Y as bag-of-words
+  - KB Triple
+    - knowledge bases have this "subject, relation, object" structure
+    - for a standard MemNN the whole triple has to be encoded into the same memory slot
+  - Sentence level
+    - split a document into sentences, and each sentence is encoded into one memory slot
+    - both key and value encode the entire sentence as a bag-of-words
+    - this is identical to a standard MemNN
+  - Window level
+    - split a document into windows of W words (here, only include windows where center word is an entity)
+    - windows are represented using bag-of-words
+    - however, in Key-Value MemNNs we encode the key as the entire window, and the value as only the center word
+      - entire window is more likely to be pertinent as a match for the question, whereas the center entity is a match for the answer
+  - Window + Center encoding
+    - to prevent mixing the window center with the rest of the window
+    - double the size D of the dictionary and encode the center of the window and the value using the 2nd dictionary(?)
+    - model can pick out the relevance of the window center (more related to answer) as compared to side words (more related to q)
+  - Window + Title
+    - the title of a document can represent an answer to a given question
+    - here, the key is the word window, but the value is the document title
+      - plus, we also keep all the standard [window,center] key-pair values from the window-level representation as well
 
-- Datasets
-  - QA tasks consisting of a set of statements, followed by a question whose answer (typically) is a single word
-    a. Sam walks into the kitchen.
-    b. Sam picks up an apple.
-    c. Sam walks into the bedroom.
-    d. Sam drops the apple.
-    *Q: Where is the apple?*
-    **A: Bedroom**
-  - Settings
-    - there are I<=320 sentences for each example problem; a question sentence *q* and answer *a*
-      - maximum 320 sentences for 1 question??
-      
-- Model Details
-  - K=3 hops used with (type1) adjacent weight sharing
-  - sentence representation
-    ![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_sentence_representation.JPG)
-  - add temporal encoding
-    - m_i = (sig_j) A x_ij + T_A(i) (<--- *i*th row of a matrix T_A that encodes temporal info, learned through training)
-  - add random noise (RN) for regularizing T_A
-    - at training we randomly add 10% of empty memories to stories 
-    
-- Baselines
-  - MemN2N: ours
-  - MemNN : AM+NG+NL Memory Networks from "Towards AI-complete question answering: A set of prerequisite toy tasks"
-  - MemNN-WSH : weakly supervised heuristic version of MemNN
-  - LSTM : standard LSTM
+## The WikiMovies Benchmark
+- Overview
+  - question-answer task dataset
+- Knowledge representations
+  1. Doc: raw Wikipedia documents
+  2. KB: graph-based knowledge base created from the Open Movie Database
+  3. IE: information extraction performed on Wikipedia to build a new KB
+    - uses the Stanford NLP Toolkit & SENNA semantic role labeling tool to uncover grammatical structure
+- Question-Answer pairs
+  - based on SimpleQuestions, created question set by substituting entities in existing questions with those from our KB triples
+  
+## Experiments
+- WikiMovies
+  - Compared with 4 approaches
+    1. KB-using QA system of Bordes et al.
+    2. Supervised embeddings ???(learns question-to-answer embeddings directly)
+    3. Memory Networks
+    4. Key-Value Memory Networks
+  - KV-MemNNs outperform all others on all three data source types (Doc/KB/IE)
+  - Window-level + Center-encoding + Title (W=7 / H=2) performs best
+  
+- QA breakdown
+  - nothing much
 
-## Results
-- Design choices
-  (i) BoW vs Position Encoding (PE)
-  (ii) all 20 tasks independently using embedding of d=20 vs jointly training using d=50
-  (iii) two phase training (linear start where softmaxes are removed initially) vs training with softmaxes from the start
-  (iv) memory hops from 1 to 3
-- Interesting points
-  - best MemN2N models are close but inferior to supervised models
-  - comfortably beats the weakly supervised baseline methods
-  - PE improves over BoW
-  - linear start (LS) helps avoid local minima
-  - using random empty memories (RN) for time index gives small but consistent boost in performance
-  - joint training always helps
-  - **more computational hops give improved performance**
+- KB vs Synthetic Document Analysis
+  - to find out differences between performing with raw documents and KBs (KB is much better)
+  - create a synthetic document based on KB triples
+  - some of the loss is caused because in sentence form it is difficult to extract the subject/relationship/object forms
+  - increasing the size of templates does not deteriorate performance
 
-## Language Modeling Experiments
-- predict the next word in a text sequence given the previous words *x*
-  - word level instead of sentence level
-  - the previous *N* words in the sequence are embedded into memory separately
-  - each memory cell holds only a single word -> no need for BoW or linear mapping (sentence representations)
-- changes to model
-  - *q* is fixed to a constant vector 0.1 without embedding (no question)
-  - output softmax predicts which word in vocabulary is next in sequence
-  - add ReLU to half of the units in each layer
-  - now apply layer-wise (RNN-like) weight sharing
-- datasets
-  - Penn Tree Bank
-  - Text8
-- Training details
-  - for each mini-batch, measure l2 norm of the whole gradient of all parameters
-  - if norm is larger than *L*=50, scale down to have norm *L*
-  - early termination (if learning rate drops below 10^-5 or 50 epochs)
-  - weights initialized by N(0, 0.05) and batch size=128
-- Results
-  - compared to RNN, LSTM, and Structurally Constrained Recurrent Nets (SCRN)
-  - MemN2N gives lower perplexity on datasets
-  - increasing the number of hops helps
-    - some hops concentrate only on recent words, other hops have attention over all memory locations
-    - two types of hops seem to alternate
- - doesn't decay exponentially like a traditional RNN, but has the same average activation across the entire memory
-
+- WikiQA
+  - task obj: given a question, select the sentence coming from a Wikipeaid document that best answers the question
+    - KB methods cannot be implemented here; only done by reading raw documents
+  - KV-MemNN outperform a large set of methods
+    - L.D.C method of Wang et al are very similar
 
 ## Conclusion
 - Contributions:
-  1. New model: NN with explicit memory and recurrent attention that can be backprop-ed for LM and QA
-  2. Tackling problem: no supervision of supporting facts compared to Memory Network, can be used in a wider range
+  1. New model: Memory network that have separate key / value memories
+    - can encode prior knowledge about the task at hand in the key and value memories
+  2. Tackling problem: it is difficult to solve QA tasks by reading directly from documents, therefore there is a huge
+  gap between such direct methods and using KBs
   3. Performance:
-    - same performance as Memory Networks
-    - better than other baselines with same level of supervision
-    - LM: slightly outperforms tuned RNNs and LSTMs of comparable complexity
-    - increasing the hop number improves performance
-  4. Proposed material:
+    - best performances in WikiMovies and WikiQA
+  4. Proposed material: https://github.com/siyuanzhao/key-value-memory-networks
 - Future works:
-  - currently unable to exactly match the performance of Memory Networks trained with strong supervision
-  - smooth lookups may not scale well to cases where larger memory is required
-  - planning to explore multiscale notions of attention or hashing
+  - application on different tasks

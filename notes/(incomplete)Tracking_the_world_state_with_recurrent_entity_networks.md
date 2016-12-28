@@ -102,12 +102,10 @@
 
 ## Conclusion
 - Contributions:
-  1. New model: Memory network that have separate key / value memories
-    - can encode prior knowledge about the task at hand in the key and value memories
-  2. Tackling problem: it is difficult to solve QA tasks by reading directly from documents, therefore there is a huge
-  gap between such direct methods and using KBs
+  1. New model: a model able to track the world state while reading text stories
+  2. Tackling problem: to design an AI model which makes predictions of the complex world over long timescales
   3. Performance:
-    - best performances in WikiMovies and WikiQA
   4. Proposed material: https://github.com/jimfleming/recurrent-entity-networks by Jim Fleming
 - Future works:
-  - application on different tasks
+  - performance dropped when using only 1k bAbI samples instead of 10k
+    - needs for a more efficient reasoning model

@@ -88,7 +88,7 @@ to unstructured documents
       - at final reading step, the values of selected memories are read by taking a weighted sum (x relevance prob)
 
 - Model structure
-![alt tag](https://lh4.googleusercontent.com/QW4GtaLuQ_HXpHSjv-O_xHYoqRzkEneyMKkLahQSDPRNlbQnRApxer9uvnlvVNhUPc14sjEqVR6Ifxk=w1484-h1043-rw)
+![alt tag](https://lh6.googleusercontent.com/Lk9UJ3k8kngUVrLIYJV7vPY-laHKA4Z_6vUPcxZkWsfehcZlAwU2c-JNySSjXz7GDImWol1mm8BYBPk=w1129-h1074-rw)
 
 - Key-Value Memories
   - Variations in defining transformation matrices for X, Y, K and V

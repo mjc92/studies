@@ -12,40 +12,43 @@ to unstructured documents
   - corresponding values of the question are subsequently returned
   - model can encode prior knowledge for the task and leverage complex transforms between keys and values
   - while being trained using standard backprop via s.g.d.
-* Results: 
+* Results:
+  - when tested on WIKIMOVIES, KV-MemNN outperforms the original Memory Network and reduces the gaps between answering from different
+  domains
+  - on WIKIQA, another benchmark without KB, KV-MemNN reaches state-of-the-art results and surpasses recent attention-based NN models
 * Future work: 
 
-## Introduction
-- Two approaches have been made to build models that make multiple computational steps in QA or task completion + describe long term dependencies in sequential data
-  - Memory networks
-  - Attention + RNN
-- Here we combine them to create an RNN architecture where recurrence reads from an external memory multiple times before outputting a symbol
-- unlike memory networks, ours is continuous and can be trained end-to-end and requires less supervision
-- unlike RNNsearch, ours has multiple computational steps("hops") which shows better performance
 
 ## Related work
-- Graves et al. Neural turing machines   
-[[paper]](https://arxiv.org/pdf/1410.5401v2.pdf) 
+- Santos et al. 
+[[paper]]() 
 [[notes]]() 
-: also uses a continuous memory representation
-  - uses both content and address-based access (ours uses only content-based access)
-  - a more complex model (ex. requires sharpening)
-  - more abstract operations of sorting and recall are challenges compared to this model which is applied to textual reasoning
-- Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention  
-[[paper]](https://arxiv.org/pdf/1502.03044v3.pdf) 
-[[notes]]() 
-: Similar in that it uses an attention model
-- Zaremba et al. Recurrent neural network regularization
-[[paper]](https://arxiv.org/pdf/1409.2329v5.pdf) 
-[[notes]]() 
-: state-of-the-art for language modeling
-  - uses very large LSTMs with Dropout
-- Mikolov et al. Learning longer memory in recurrent neural networks
-[[paper]](https://arxiv.org/pdf/1412.7753v2.pdf) 
-[[notes]]() 
-: state-of-the-art for language modeling
-  - uses RNNs with diagonal constraints on the weight matrix
+: state-of-the-art on TRECQA / WIKIQA using CNN
 
+- Yin and Schutze. 
+[[paper]]() 
+[[notes]]() 
+: state-of-the-art on TRECQA / WIKIQA using CNN
+
+- Wang et al. 
+[[paper]]() 
+[[notes]]() 
+: state-of-the-art on TRECQA / WIKIQA using CNN
+
+- Miao et al. 
+[[paper]]() 
+[[notes]]() 
+: state-of-the-art on TRECQA / WIKIQA using RNN
+
+- Hill et al,  
+[[paper]](https://arxiv.org/pdf/1503.08895v5) 
+[[notes]]
+: uses memory networks for reading children's books and answering questions about them
+
+- Weston et al (2016),  
+[[paper]](https://arxiv.org/pdf/1503.08895v5) 
+[[notes]]
+: uses memory networks for complex reasoning over simulated stories
 
 ## Prerequisites
 - Weston et al, Memory Networks
@@ -58,11 +61,34 @@ to unstructured documents
 - Sukhbaatar et al, End-To-End Memory Networks 
 [[paper]](https://arxiv.org/pdf/1503.08895v5) 
 [[notes]]
-: 
+: basic model
 
-## Approach
+## Key-Value Memory Networks
+- Concept
+  - lookup (addressing) stage is based on the key memory
+    - key: designed with features to help match it to the question
+  - reading (return result) stage is based on the value memory
+    - value: designed with features to help match it to the response (=answer)
+  - effects
+    1. greater flexibility for practitioner to encode prior knowledge about their task
+    2. more effective power in the model via transforms between key and value
+- Model description
+  - At test time:
+    - when given query(e.g. question in QA tasks), hops (=iterations of addressing & reading memory) are made
+    - at each step, the collected information of memory is cumulatively added to original query to be used for next round
+    - at last iteration, the final retrieved context and most recent query are combined as features to predict response
+    - in other words, q0 -> (get i0 from memory) -> q1(=q0+i0) -> (get i1) -> q2(=q1+i1) -> (get i2) -> use q2+i2
+  - Memory slots defined as **pair of vectors (k1,v1), (k2,v2), ... , (kM,vM)**
+  - Addressing and reading of the memory
+    - Key Hashing
+      - from question, select small subsets that share at least one word with the question ignoring stop words
+    - Key Addressing
+      - each candidate memory get probability of relevance compared to question
+    - Value Reading
+      - at final reading step, the values of selected memories are read by taking a weighted sum (x relevance prob)
+
 - Model structure
-![alt tag](https://github.com/mjc92/studies/blob/master/notes/images/end-to-end_mem_network_model.JPG)
+![alt tag](https://lh5.googleusercontent.com/ZJAEgKnmkK9wy17PX1YGQ7V1NNx6vFQuSI3-lp4xvWMPSDApq8ki6U0LswZsUaW9gVRfhb3nqyqxxoA=w958-h1050-rw)
 - Weight tying scheme
   1. adjacent
   2. layer-wise (RNN-like)

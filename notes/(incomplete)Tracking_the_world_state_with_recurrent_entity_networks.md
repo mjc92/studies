@@ -72,7 +72,7 @@
 ![alt tag](https://lh3.googleusercontent.com/N9n6z01r0DPx0_NkCtkvxgUYonbxUrh54t-8CxfYz36Xjl6iH63SNZvLdIae9YBzzCxYGypAHVPTc_A=w1920-h1045-rw)
 
 - Output layer
-![alt tag]https://lh4.googleusercontent.com/hiKTUaNz-T5z5NDgrKItyexVjoByIznl3PyGDsd0m9ZLwUuMNl7aG9ANbs6Sg1ElMvlmSJkjanZnYw4=w1920-h1045-rw)
+![alt tag](https://lh4.googleusercontent.com/hiKTUaNz-T5z5NDgrKItyexVjoByIznl3PyGDsd0m9ZLwUuMNl7aG9ANbs6Sg1ElMvlmSJkjanZnYw4=w1920-h1045-rw)
 
 
 ## Motivating example of operation

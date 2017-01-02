@@ -69,10 +69,10 @@
 
 - Input encoder
 - Dynamic memory
-![alt tag](https://lh3.googleusercontent.com/Shd-DcpEOAIjXaonz-HEY60vk698X_6D-PpeJutG3etqJPJRikpoGNPi15BvCeEM3cWCfvznbjPOz6Y=w976-h1074-rw)
+![alt tag](https://lh3.googleusercontent.com/N9n6z01r0DPx0_NkCtkvxgUYonbxUrh54t-8CxfYz36Xjl6iH63SNZvLdIae9YBzzCxYGypAHVPTc_A=w1920-h1045-rw)
 
 - Output layer
-![alt tag](https://lh5.googleusercontent.com/bAhXvKhgEJDCHG0UiES5IEhlsIRK1w1Ih2MhK5Ef6woDZU-NaW6ikCMFDPVkEEbNOFWgFrNh5ahVbls=w976-h1074-rw)
+![alt tag]https://lh4.googleusercontent.com/hiKTUaNz-T5z5NDgrKItyexVjoByIznl3PyGDsd0m9ZLwUuMNl7aG9ANbs6Sg1ElMvlmSJkjanZnYw4=w1920-h1045-rw)
 
 
 ## Motivating example of operation

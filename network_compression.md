@@ -32,6 +32,7 @@ Markdown | Less | Pretty
 
 ##Applications
 - Quantized convolutional neural networks for mobile devices. Wu et al. 2015.
+- Compression of deep convolutional neural netowrks for fast and low power mobile applications. Kim et al. 2015
 - On the compression of recurrent neural networks with an application to LVCSR acoustic modeling for embedded speech recognition.
 Prabhavalkar et al. 2016
 

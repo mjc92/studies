@@ -24,9 +24,9 @@ Markdown | Less | Pretty
 - Predicting parameters in deep learning. Denil et al. **NIPS 2013**
 - Exploiting linear structure within convolutional networks for efficient evaluation. Denton et al (Y.LeCun). **NIPS 2014**
 - Speeding up convolutional neural networks with low rank expansions. Jaderberg et al. **BMVC 2014**
-- Neural networks with few multiplications. Lin et al (Y.Bengio) **ICLR 2016**
 - Compressing neural networks with the hashing trick. Chen et al. **ICML 2015**
 - Deep Compression: compressing deep neural networks with pruning, trained quantization and Huffman coding. Han et al. **ICLR 2016**
+- Neural networks with few multiplications. Lin et al (Y.Bengio) **ICLR 2016**
 - EIE: efficient inference engine on compressed deep neural network. Han et al. **ISCA 2016**
 - Recurrent neural networks with limited numerical precision. Ott et al (Y.Bengio). **NIPS 2016 EMDNN**
 

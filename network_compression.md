@@ -19,3 +19,22 @@ Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
 1 | 2 | 3
+
+##Theory
+- Predicting parameters in deep learning. Denil et al. **NIPS 2013**
+- Exploiting linear structure within convolutional networks for efficient evaluation. Denton et al (Y.LeCun). **NIPS 2014**
+- Speeding up convolutional neural networks with low rank expansions. Jaderberg et al. **BMVC 2014**
+- Neural networks with few multiplications. Lin et al (Y.Bengio) **ICLR 2016**
+- Compressing neural networks with the hashing trick. Chen et al. **ICML 2015**
+- Deep Compression: compressing deep neural networks with pruning, trained quantization and Huffman coding. Han et al. **ICLR 2016**
+- EIE: efficient inference engine on compressed deep neural network. Han et al. **ISCA 2016**
+- Recurrent neural networks with limited numerical precision. Ott et al (Y.Bengio). **NIPS 2016 EMDNN**
+
+##Applications
+- Quantized convolutional neural networks for mobile devices. Wu et al. 2015.
+- On the compression of recurrent neural networks with an application to LVCSR acoustic modeling for embedded speech recognition.
+Prabhavalkar et al. 2016
+
+##To be seen soon
+- SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size. Iandola et al (S.Han). 2016.
+- Trained ternary quantization. Zhu et al (S.Han). 2017

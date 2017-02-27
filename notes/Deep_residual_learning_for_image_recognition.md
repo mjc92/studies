@@ -57,36 +57,35 @@
   - for testing, adopt 10-crop testing
 
 ## Datasets and Experimental Setup
-	- Experiments
-		○ ImageNet classification
-			§ plain networks: 34-layer has higher training error than 18-layer
-				□ degradation problem sighted
-				□ unlikely to be caused by vanishing gradients : trained with BN
-					® forward propagated signals have non-zero variances
-					® backprop-ed gradients have healthy norms with BN
-				□ so deep plain nets have low convergence rates, which impact reducing of the training error
-			§ residual networks: 34-layer resnet has lower training error than 18-layer resnet
-				□ 34-layer resnet has better performance than 34-layer plain network
-				□ 18-resnet is faster than 18-layer plain network
-			§ identity vs projection shortcuts:
-				□ identity : y = F(x,Wi) + x
-				□ projection : y = F(x,Wi) + W_s*x
-				□ while projection is better than plain settings, it does not improve performance that much
-				□ identity shortcuts are important for not increasing the complexity of bottleneck architectures
-			§ deeper bottleneck architectures
-				□ stack of 3 layers instead of 2 layers
-				□ identity shortcuts are more efficient than projection shortcuts
-		○ CIFAR-10 and analysis
-			§ CIFAR-10 dataset settings
-				□ inputs: 32x32 images, per-pixel mean subtracted
-				□ 1st layer : 3x3 conv
-				□ 6n layers stack with 3x3 conv
-					® feature maps of sizes {32,16,8}
-				□ 2n layers for each feature map size
-					® filter sizes {16,32,64}
-				□ conv with stride of 2
-				□ 10-way fully-connected layer -> softmax
-				□ total of 6n+2 stacked layers
+○ ImageNet classification
+	§ plain networks: 34-layer has higher training error than 18-layer
+		□ degradation problem sighted
+		□ unlikely to be caused by vanishing gradients : trained with BN
+			® forward propagated signals have non-zero variances
+			® backprop-ed gradients have healthy norms with BN
+		□ so deep plain nets have low convergence rates, which impact reducing of the training error
+	§ residual networks: 34-layer resnet has lower training error than 18-layer resnet
+		□ 34-layer resnet has better performance than 34-layer plain network
+		□ 18-resnet is faster than 18-layer plain network
+	§ identity vs projection shortcuts:
+		□ identity : y = F(x,Wi) + x
+		□ projection : y = F(x,Wi) + W_s*x
+		□ while projection is better than plain settings, it does not improve performance that much
+		□ identity shortcuts are important for not increasing the complexity of bottleneck architectures
+	§ deeper bottleneck architectures
+		□ stack of 3 layers instead of 2 layers
+		□ identity shortcuts are more efficient than projection shortcuts
+○ CIFAR-10 and analysis
+	§ CIFAR-10 dataset settings
+		□ inputs: 32x32 images, per-pixel mean subtracted
+		□ 1st layer : 3x3 conv
+		□ 6n layers stack with 3x3 conv
+			® feature maps of sizes {32,16,8}
+		□ 2n layers for each feature map size
+			® filter sizes {16,32,64}
+		□ conv with stride of 2
+		□ 10-way fully-connected layer -> softmax
+		□ total of 6n+2 stacked layers
 
 ## Results and Discussion
 - Baseline model(CNN-rand) performs poorly

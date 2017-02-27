@@ -57,7 +57,7 @@
   - for testing, adopt 10-crop testing
 
 ## Datasets and Experimental Setup
-○ ImageNet classification
+- ImageNet classification
 	§ plain networks: 34-layer has higher training error than 18-layer
 		□ degradation problem sighted
 		□ unlikely to be caused by vanishing gradients : trained with BN

@@ -2,7 +2,7 @@
 - Targ et al.
 [[paper]](https://arxiv.org/pdf/1603.08029.pdf)
 - 2016
-- overview: a very simple paper
+- overview: simple workshop paper; added some networks to the original resnet
 
 * Motivation: resnets have multiple levels of feature representation in a single layer
 * Contribution: 
@@ -25,46 +25,23 @@
 - generalized residual block
   1. residual stream **r** : corresponds to **x** from an original renet block
   2. transient stream **t** : standard convolutional layer
+    - role of t: process information from either stream in a nonlinear manner w/o shortcut connections, and allows info from earlier states to be discarded
+  - please check Figure 1
+  - still unsure how earlier information is discarded
 
 
-## Datasets and Experimental Setup
+## Experiments
 - hyperparameters
-  - ReLU
-  - filters sizes: 3,4,5 with 100 each
-  - l2 constraint(s): 3
-  - dropout rate: 0.5
-  - minibatch size: 50
-  - early stopping on dev sets
-  - stochastic gradient descent over shuffled mini-batches with Adadelta update rule
-- Pretrained word vectors
-  - word2vec trained on 100 billion words from Google News
-  - dimensionality of 300
-  - trained by CBOW
-- Model variations
-  - CNN-Rand: baseline, all words randomly initialized then modified during training
-  - CNN-static: model with pretrained word2vec, which is kept tstatic
-  - CNN-non-static: pretrained word2vec, fine-tune them for each task
-  - CNN-multichannel: 2 sets of word vectors
-    - each filter is applied to both "channels(each set of word vector)", but backprop to only one of them
-    - both initialized by word2vec
-
-## Results and Discussion
-- Baseline model(CNN-rand) performs poorly
-- Even a simple model (CNN-static) performs as well as complex models from other papers
-
-### Multichannel vs Single Channel Models
-- Multichannel architecture might prevent overfitting?
-  - mixed results...
-
-### Static vs Non-static Representations
-- both single and multichannel non-static models can fine-tune its channel to task-at-hand
-
-### Further Observations
-- dropout is a good regularizer (2~4% performance boost)
-
-## Conclusion
-- Contributions:
-  1. New model: a simple CNN with one layer of convolution performs well
-  2. Tackling problem: 
-  3. Performance: 
-- Future works:
+  - CIFAR-10 & CIFAR-100
+  - SGD w/ momentum 0.9
+  - minibatch size : 500
+  - L2 penalty : 0.0001
+  - train 82 epochs
+  - scaled by 0.1 after 42 & 62 epochs
+  - MSR initialization for all weight tensors
+- CIFAR-10
+  - fractional max-pooling performs best
+  - 18-layer + wide RiR performs better than original ResNet
+- CIFAR-100
+  - 18-layer + wide RiR performs better
+  - 18-layer + wide ResNet performs better than when using ResNet Init
